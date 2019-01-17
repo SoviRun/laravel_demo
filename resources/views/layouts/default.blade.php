@@ -6,23 +6,16 @@
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 </head>
 <body>
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-        <a href="/" class="navbar-brand">Gene Laravel</a>
-        <ul class="navbar-nav justify-content-end">
-            <li class="nav-item">
-                <a href="/help" class="nav-link">帮助</a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">登录</a>
-            </li>
-        </ul>
-    </div>
-</nav>
+{{--头部--}}
+@include('layouts._header')
 
 <div class="container">
-    @yield('content')
+    <div class="offset-md-1 col-md-10">
+        {{--内容--}}
+        @yield('content')
+        {{--脚部--}}
+        @include('layouts._footer')
+    </div>
 </div>
 
 </body>
