@@ -3,7 +3,7 @@
         <a href="/" class="navbar-brand">Gene Laravel</a>
         <ul class="navbar-nav justify-content-end">
             <li class="nav-item">
-                <a href="/help" class="nav-link">帮助</a>
+                <a href="{{ route('help') }}" class="nav-link">帮助</a>
             </li>
             <li class="nav-item">
                 <a href="#" class="nav-link">登录</a>
