@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title','注册');
+@section('title','注册')
 
 @section('content')
     <div class="offset-md-2 col-md-8">
@@ -9,8 +9,11 @@
                 <h5>注册</h5>
             </div>
             <div class="card-body">
-                <form action="{{ route('users.store') }}" method="POST">
+                {{--错误信息--}}
+                @include('shared._error')
 
+                <form action="{{ route('users.store') }}" method="POST">
+                    {{--token令牌--}}
                     {{ csrf_field() }}
 
                     <div class="form-group">
