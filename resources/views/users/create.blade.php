@@ -22,8 +22,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="eamil">邮箱:</label>
-                        <input type="text" name="eamil" class="form-control" value="{{ old('email') }}">
+                        <label for="email">邮箱:</label>
+                        <input type="text" name="email" class="form-control" value="{{ old('email') }}">
                     </div>
 
                     <div class="form-group">

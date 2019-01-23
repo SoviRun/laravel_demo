@@ -11,6 +11,8 @@
 
 <div class="container">
     <div class="offset-md-1 col-md-10">
+        {{--错误消息提醒--}}
+        @include('shared._message')
         {{--内容--}}
         @yield('content')
         {{--脚部--}}
