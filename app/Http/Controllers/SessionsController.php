@@ -16,6 +16,12 @@ class SessionsController extends Controller
         return view('sessions.create');
     }
 
+    /**
+     * 登录操作
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|void
+     * @throws \Illuminate\Validation\ValidationException
+     */
     public function store(Request $request)
     {
         $credentials = $this->validate($request, [
@@ -31,5 +37,16 @@ class SessionsController extends Controller
             return redirect()->back()->withInput();
         }
         return;
+    }
+
+    /**
+     * 退出登录操作
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function destroy()
+    {
+        Auth::logout();
+        session()->flash('success', '已经退出成功！！');
+        return redirect('login');
     }
 }
