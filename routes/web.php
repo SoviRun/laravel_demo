@@ -23,6 +23,7 @@ Route::get('/help', 'StaticPagesController@help')->name('help');
 Route::get('/about', 'StaticPagesController@about')->name('about');
 /*注册*/
 Route::get('signup', 'UsersController@create')->name('signup');
+Route::get('signup/confirm/{token}', 'UsersController@confirmEmail')->name('confirm_email');
 /*用户信息*/
 Route::resource('users', 'UsersController');
 /*登录登出*/
