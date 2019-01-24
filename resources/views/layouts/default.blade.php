@@ -19,6 +19,7 @@
         @include('layouts._footer')
     </div>
 </div>
-
+{{--引入bootstrap的js--}}
+<script src="{{ mix('js/app.js') }}"></script>
 </body>
 </html>

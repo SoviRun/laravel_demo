@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Auth;
 
 class UsersController extends Controller
 {
@@ -25,7 +26,12 @@ class UsersController extends Controller
         return view('users.show', compact('user'));;
     }
 
-
+    /**
+     * 创建个人用户操作
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Validation\ValidationException
+     */
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -40,6 +46,7 @@ class UsersController extends Controller
             'password' => bcrypt($request->password)
         ]);
 
+        Auth::login($user);
         session()->flash('success', '恭喜，注册成功！！！');
         return redirect()->route('users.show', [$user]);
     }
