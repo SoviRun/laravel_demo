@@ -8,6 +8,18 @@ use Auth;
 
 class UsersController extends Controller
 {
+    public function __construct()
+    {
+        /*except除了指定的方法，其它都要过滤，auth登录才能操作*/
+        $this->middleware('auth', [
+            'except' => ['show', 'create', 'store']
+        ]);
+        /*only只有指定的方法可以访问，guest未登录的可以操作*/
+        $this->middleware('guest', [
+            'only' => ['create']
+        ]);
+    }
+
     /**
      * 获取创建账号界面
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -58,11 +70,20 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
+        $this->authorize('update', $user);
         return view('users.edit', compact('user'));
     }
 
+    /**
+     * 更新用户信息操作
+     * @param User $user
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Validation\ValidationException
+     */
     public function update(User $user, Request $request)
     {
+        $this->authorize('update', $user);
         $this->validate($request, [
             'name' => 'required|max:50',
             'password' => 'nullable|confirmed|min:6'
