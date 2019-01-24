@@ -12,7 +12,7 @@ class UsersController extends Controller
     {
         /*except除了指定的方法，其它都要过滤，auth登录才能操作*/
         $this->middleware('auth', [
-            'except' => ['show', 'create', 'store']
+            'except' => ['show', 'create', 'store', 'index']
         ]);
         /*only只有指定的方法可以访问，guest未登录的可以操作*/
         $this->middleware('guest', [
@@ -98,5 +98,15 @@ class UsersController extends Controller
 
         session()->flash('success', '更新成功！！！');
         return redirect()->route('users.show', $user);
+    }
+
+    /**
+     * 获取全部用户页面
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function index()
+    {
+        $users = User::paginate(10);
+        return view('users.index', compact('users'));
     }
 }
