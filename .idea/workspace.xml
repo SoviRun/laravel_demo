@@ -243,7 +243,7 @@
       <path value="$PROJECT_DIR$/vendor/caouecs/laravel-lang" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="630" />
     <option name="y" value="67" />
     <option name="width" value="984" />
