@@ -10570,3 +10570,10 @@ section.user_info h1 {
   margin-top: 20px;
 }
 
+/*删除微博*/
+
+.status_destroy {
+  margin-left: 10px;
+  align-self: center;
+}
+
