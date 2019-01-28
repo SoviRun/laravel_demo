@@ -37,7 +37,7 @@ class UsersController extends Controller
     public function show(User $user)
     {
         $statuses = $user->statuses()->orderBy('created_at', 'desc')->paginate(10);
-        return view('users.show', compact('user','statuses'));;
+        return view('users.show', compact('user', 'statuses'));;
     }
 
     /**
@@ -160,5 +160,19 @@ class UsersController extends Controller
         Auth::login($user);
         session()->flash('success', '恭喜你！激活完成可以登录了！！');
         return redirect()->route('users.show', [$user]);
+    }
+
+    public function followings(User $user)
+    {
+        $users = $user->followings()->paginate(30);
+        $title = $user->name . '关注的人';
+        return view('users.show_follow', compact('users', 'title'));
+    }
+
+    public function followers(User $user)
+    {
+        $users = $user->followers()->paginate(30);
+        $title = $user->name . '的粉丝';
+        return view('users.show_follow', compact('users', 'title'));
     }
 }
