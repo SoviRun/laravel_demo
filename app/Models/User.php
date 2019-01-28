@@ -60,6 +60,7 @@ class User extends Authenticatable
 
     /**
      * 粉丝关系
+     * user_id 被关注的用户
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function followers()
@@ -69,6 +70,7 @@ class User extends Authenticatable
 
     /**
      * 关注用户关系
+     * follower_id 关注发起人 粉丝id
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function followings()
