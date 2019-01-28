@@ -1,4 +1,4 @@
-<li>
+<li class="media mt-4 md-4">
     <a href="{{ route('users.show',$user->id) }}">
         <img src="{{ $user->gravatar() }}" alt="{{ $user->name }}" class="gravatar mr-3">
     </a>
