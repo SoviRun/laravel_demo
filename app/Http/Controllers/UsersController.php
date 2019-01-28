@@ -36,7 +36,8 @@ class UsersController extends Controller
      */
     public function show(User $user)
     {
-        return view('users.show', compact('user'));;
+        $statuses = $user->statuses()->orderBy('created_at', 'desc')->paginate(10);
+        return view('users.show', compact('user','statuses'));;
     }
 
     /**
@@ -68,6 +69,7 @@ class UsersController extends Controller
      * 获取更新个人信息页面
      * @param User $user
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit(User $user)
     {
@@ -80,6 +82,7 @@ class UsersController extends Controller
      * @param User $user
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      * @throws \Illuminate\Validation\ValidationException
      */
     public function update(User $user, Request $request)
@@ -141,7 +144,7 @@ class UsersController extends Controller
         //Mail::send($view, $data, function ($message) use ($from, $name, $to, $subject) {
         //    $message->from($from, $name)->to($to)->subject($subject);
         //});
-        Mail::send($view, $data, function ($message) use ( $to, $subject) {
+        Mail::send($view, $data, function ($message) use ($to, $subject) {
             $message->to($to)->subject($subject);
         });
     }
